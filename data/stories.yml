@@ -2,29 +2,28 @@ version: "3.1"
 
 stories:
 
-- story: happy path
+- story: respuesta servicios
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
+  - intent: servicios
+  - action: utter_servicios
 
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
 
-- story: sad path 2
+- story: respuesta adaptacion
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: deny
-  - action: utter_goodbye
+  - intent: adaptacion_cliente
+  - action: utter_adaptacion_cliente
+
+- story: respuesta proceso
+  steps:
+  - intent: proceso_trabajo
+  - action: utter_proceso_trabajo
+
+- story: respuesta resultados
+  steps:
+  - intent: resultados_esperados
+  - action: utter_resultados_esperados
+
+- story: respuesta medicion
+  steps:
+  - intent: medicion_exito
+  - action: utter_medicion_exito

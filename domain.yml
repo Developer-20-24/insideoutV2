@@ -1,33 +1,30 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - servicios
+  - adaptacion_cliente
+  - proceso_trabajo
+  - resultados_esperados
+  - medicion_exito
+
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+  utter_servicios:
+  - text: "Ofrecemos una amplia gama de servicios, desde el desarrollo de marca y diseño gráfico, gestión de redes sociales y campañas publicitarias hasta programas de Capacitación y Comunicación. Nuestro objetivo es ayudarte a construir una marca sólida y conectar con tu audiencia de manera efectiva."
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_adaptacion_cliente:
+  - text: "Creemos que cada cliente es único, por lo que ofrecemos soluciones personalizadas. Realizamos un análisis exhaustivo de tu negocio y tus objetivos para desarrollar una estrategia a medida."
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_proceso_trabajo:
+  - text: "Nuestro proceso comienza con una reunión para entender tus necesidades y expectativas. Luego, desarrollamos una propuesta detallada y un plan de acción. A lo largo del proyecto, mantenemos una comunicación abierta y transparente contigo."
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_resultados_esperados:
+  - text: "Los resultados pueden variar dependiendo de tus objetivos y del mercado. Sin embargo, nuestros clientes suelen experimentar un aumento en el reconocimiento de marca, un mayor engagement en las redes sociales y un crecimiento en las ventas."
 
-  utter_goodbye:
-  - text: "Bye"
+  utter_medicion_exito:
+  - text: "Utilizamos una variedad de métricas para medir el éxito de cada campaña, como el alcance, la interacción, el tráfico del sitio web y el retorno de la inversión (ROI). Te proporcionaremos informes detallados para que puedas ver los resultados de primera mano."
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+
 
 session_config:
   session_expiration_time: 60
