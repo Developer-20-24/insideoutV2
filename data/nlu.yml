@@ -39,4 +39,45 @@ nlu:
     - medicion de exito
     - medición de exito
 
+- intent: numeric_input
+  examples: |
+    - 1
+    - 12
+    - 123
+    - 1234
+    - 12345
+    - 123456789
+    - 1234567890123456789
+
+- intent: saludo
+  examples: |
+    - hola
+    - buenos días
+    - buenas tardes
+    - buenas noches
+    - buen día
+    - buena noche
+    - buena tarde
+    - hey
+ 
+
+- intent: despedida
+  examples: |
+    - adiós
+    - hasta luego
+    - nos vemos
+    - nos vemos más tarde
+    - chao
+    - hasta mañana
+    - hasta más tarde
+    - hasta pronto
+    - gracias
+    - muchas gracias
+
+
+
+- regex: numeric_pattern
+  examples: |
+    - ^[0-9]+$
+    - .*\d+.*
 

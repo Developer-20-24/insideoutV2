@@ -6,7 +6,10 @@ intents:
   - proceso_trabajo
   - resultados_esperados
   - medicion_exito
-
+  - saludo
+  - despedida
+  - nlu_fallback
+  - numeric_input
 
 responses:
   utter_servicios:
@@ -24,7 +27,21 @@ responses:
   utter_medicion_exito:
   - text: "Utilizamos una variedad de métricas para medir el éxito de cada campaña, como el alcance, la interacción, el tráfico del sitio web y el retorno de la inversión (ROI). Te proporcionaremos informes detallados para que puedas ver los resultados de primera mano."
 
+  utter_invalid_input:
+  - text: "Lo siento, no puedo procesar números ni secuencias numéricas. Por favor, hazme una pregunta sobre nuestros servicios usando palabras."
 
+  utter_default:
+  - text: "No he entendido tu mensaje. Por favor, pregúntame sobre nuestros servicios o selecciona una de las opciones disponibles."
+
+  utter_saludo:
+  - text: "Hola soy InseChat, ¿en qué puedo ayudarte?"
+
+  utter_despedida:
+  - text: "Fue un gusto ayudarte, ¡Hasta la próxima!"
+
+actions:
+  - action_default_fallback
+  - action_validate_input
 
 session_config:
   session_expiration_time: 60
