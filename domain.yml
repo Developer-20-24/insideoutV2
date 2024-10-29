@@ -34,7 +34,7 @@ responses:
   - text: "No he entendido tu mensaje. Por favor, pregúntame sobre nuestros servicios o selecciona una de las opciones disponibles."
 
   utter_saludo:
-  - text: "Hola soy InseChat, ¿en qué puedo ayudarte?"
+  - text: "Hola soy Anita, ¿en qué puedo ayudarte?"
 
   utter_despedida:
   - text: "Fue un gusto ayudarte, ¡Hasta la próxima!"
