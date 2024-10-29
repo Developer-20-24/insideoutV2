@@ -13,6 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia el resto de los archivos del proyecto al contenedor
 COPY . .
 
+# Entrena el modelo Rasa
+RUN rasa train
+
 # Expón el puerto (ajústalo según el puerto en el que corre tu app)
 EXPOSE 5005
 
