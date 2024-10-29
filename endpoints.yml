@@ -43,8 +43,8 @@
 tracker_store:
   type: SQL
   dialect: "postgresql"  
-  url: "localhost"       
-  db: "rasa_db"          
-  username: "postgres" 
-  password: "Angiehernandez.123"  
+  url: "postgresql://chatbot_rasa_user:fAgz7PvHCYgKt8DhjVL7wds2CukmKhic@dpg-csgkv7btq21c73ethd1g-a.oregon-postgres.render.com/chatbot_rasa"       
+  db: "chatbot_rasa"          
+  username: "chatbot_rasa_user" 
+  password: "fAgz7PvHCYgKt8DhjVL7wds2CukmKhic"  
   port: 5432             
