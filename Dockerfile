@@ -17,13 +17,13 @@ COPY . .
 RUN rasa train
 
 # Exponer el puerto 5005 para la API de Rasa
-EXPOSE 10000
+EXPOSE 5055
 
 # Comando para ejecutar Rasa
 # CMD ["sh", "-c", "rasa run actions --port 5055"]
-# CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --port 5055"]
+CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --port 5055"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --actions actions"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port 5005 & rasa run actions --port 5055"]
 # CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "${PORT}"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
-CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
+#CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
