@@ -8,3 +8,4 @@ requests==2.32.3
 spacy==3.5.1
 sanic==21.12.1
 sqlalchemy<2.0
+sanic-routing==0.7.2
