@@ -16,12 +16,6 @@ COPY . .
 # Entrena el modelo Rasa
 RUN rasa train
 
-# Copia el script de inicio
-COPY start.sh ./
-
-# Asegúrate de que el script sea ejecutable
-RUN chmod +x start.sh
-
 # Exponer el puerto 5005 para la API de Rasa
 EXPOSE 5005
 
@@ -30,5 +24,4 @@ EXPOSE 5005
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --port 5055"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --actions actions"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port 5005 & rasa run actions --port 5055"]
-# Define el comando a ejecutar
-CMD ["./start.sh"]
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "$PORT"]
