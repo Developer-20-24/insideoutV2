@@ -24,4 +24,4 @@ EXPOSE 5005
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --port 5055"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --actions actions"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port 5005 & rasa run actions --port 5055"]
-CMD rasa run --enable-api --cors "*" --port ${PORT}
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "${PORT}"]
