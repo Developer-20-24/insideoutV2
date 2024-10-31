@@ -15,7 +15,7 @@ action_endpoint:
   #url: "http://localhost:5055/webhook"
 
 rest:
-  url: "https://chatbotinsideout.onrender.com/webhooks/rest/webhook"
+  url: "https://chatbotinsideout.onrender.com/webhooks"
 
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.
