@@ -20,7 +20,7 @@ RUN rasa train
 EXPOSE 5005
 
 # Comando para ejecutar Rasa
-#CMD ["sh", "-c", "rasa run --enable-api --cors '*' --host 0.0.0.0 --port $PORT -vv & rasa run actions --port 5055 -vv"]
+CMD ["sh", "-c", "rasa run --enable-api --cors '*' --host 0.0.0.0 --port $PORT -vv & rasa run actions --port 5005 -vv"]
 # CMD ["sh", "-c", "rasa run actions --port 5055" --host 0.0.0.0]
 #CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --port 5055"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --actions actions"]
@@ -28,4 +28,4 @@ EXPOSE 5005
 # CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "${PORT}"]
 # CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
 #CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "rasa run actions", "--port", "5005"]
+#CMD ["rasa", "run", "--enable-api", "--cors", "*", "rasa run actions", "--port", "5005"]
