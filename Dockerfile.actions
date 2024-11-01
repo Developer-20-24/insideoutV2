@@ -1,0 +1,15 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY actions actions
+COPY data data
+
+ENV PORT=5055
+
+EXPOSE ${PORT}
+
+CMD ["rasa", "run", "actions", "--port", "${PORT}", "--cors", "*"]

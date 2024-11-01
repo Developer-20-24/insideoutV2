@@ -1,31 +1,38 @@
 # Usa una imagen base de Python 3.9
 FROM python:3.9-slim
 
-# Configura el directorio de trabajo dentro del contenedor
+# Instala dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configura el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos requirements.txt (o pyproject.toml si usas Poetry) y de dependencias al contenedor
+# Copia los archivos de requerimientos
 COPY requirements.txt ./
 
-# Instala las dependencias del proyecto
+# Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto de los archivos del proyecto al contenedor
+# Copia el resto de los archivos
 COPY . .
 
-# Entrena el modelo Rasa
+# Entrena el modelo
 RUN rasa train
 
-# Exponer el puerto 5005 para la API de Rasa
-EXPOSE $PORT
+# Configura variables de entorno por defecto
+ENV PORT=5005
+ENV WORKERS=1
 
-# Comando para ejecutar Rasa
-CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
-# CMD ["sh", "-c", "rasa run actions --port 5055" --host 0.0.0.0]
-#CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --port 5055"]
-# CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port $PORT & rasa run actions --actions actions"]
-# CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port 5005 & rasa run actions --port 5055"]
-# CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "${PORT}"]
-# CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
-#CMD ["sh", "-c", "rasa run --enable-api --cors '*' --port ${PORT}"]
-#CMD ["rasa", "run", "--enable-api", "--cors", "*", "rasa run actions", "--port", "5005"]
+# Expone el puerto
+EXPOSE ${PORT}
+
+# Comando para iniciar el servidor
+CMD rasa run \
+    --enable-api \
+    --cors "*" \
+    --port ${PORT} \
+    --workers ${WORKERS} \
+    --auth none
