@@ -52,3 +52,4 @@ tracker_store:
   username: "chatbot_rasa_user" 
   password: "fAgz7PvHCYgKt8DhjVL7wds2CukmKhic"  
   port: 5432             
+
