@@ -1,15 +1,44 @@
 FROM python:3.9-slim
 
+# Configura variables de entorno para reducir el uso de memoria
+ENV PYTHONUNBUFFERED=1
+ENV RASA_TELEMETRY_ENABLED=false
+ENV TF_CPP_MIN_LOG_LEVEL=2
+ENV TENSORFLOW_IO_ENABLE_OUTLIER_DETECTION=false
+
+# Configura el directorio de trabajo
 WORKDIR /app
 
+# Instala solo las dependencias esenciales
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copia los archivos necesarios
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
 
-COPY actions actions
-COPY data data
+# Instala las dependencias
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip cache purge
 
-ENV PORT=5055
+# Copia el resto de los archivos
+COPY . .
 
+# Entrena el modelo
+RUN rasa train --debug
+
+# Limpia archivos innecesarios
+RUN apt-get purge -y --auto-remove build-essential python3-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && find . -type d -name "__pycache__" -exec rm -r {} + \
+    && rm -rf /root/.cache
+
+# Configura el puerto
+ENV PORT=5005
+
+# Expone el puerto
 EXPOSE ${PORT}
 
-CMD ["rasa", "run", "actions", "--port", "${PORT}", "--cors", "*"]
+# Inicia el servidor
+CMD rasa run --enable-api --cors "*" --port ${PORT} --no-prompt --production
