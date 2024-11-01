@@ -32,4 +32,5 @@ ENV PORT=5005
 EXPOSE 5005
 
 # Comando CMD modificado para especificar directamente el puerto
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005"]
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005", "--no-prompt", "--production"]
+

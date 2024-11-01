@@ -41,4 +41,4 @@ ENV PORT=5055
 EXPOSE 5055
 
 # Inicia el servidor
-CMD rasa run --enable-api --cors "*" --port 5055 --no-prompt --production
+CMD ["rasa", "run", "actions", "--port", "5055"]
