@@ -1,5 +1,5 @@
 rasa==3.6.20
 rasa-sdk==3.6.2
 requests==2.32.3
-sanic>=22.6.0
+sanic==21.12.1
 sqlalchemy<2.0
