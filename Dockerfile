@@ -24,15 +24,10 @@ RUN rasa train
 
 # Configura variables de entorno por defecto
 ENV PORT=5005
-ENV WORKERS=1
 
 # Expone el puerto
 EXPOSE ${PORT}
 
 # Comando para iniciar el servidor
-CMD rasa run \
-    --enable-api \
-    --cors "*" \
-    --port ${PORT} \
-    --workers ${WORKERS} \
-    --auth none
+ENTRYPOINT ["rasa", "run", "--enable-api", "--cors", "*"]
+CMD ["--port", "5005"]
