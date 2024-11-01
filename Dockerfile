@@ -35,7 +35,7 @@ EXPOSE 5005
 CMD rasa run \
     --enable-api \
     --cors "*" \
+    --log-level WARNING \
     --port 5005 \
     --no-prompt \
-    --production \
-    --log-level WARNING
+    --production
