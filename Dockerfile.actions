@@ -35,10 +35,10 @@ RUN apt-get purge -y --auto-remove build-essential python3-dev \
     && rm -rf /root/.cache
 
 # Configura el puerto
-ENV PORT=5005
+ENV PORT=5055
 
 # Expone el puerto
-EXPOSE ${PORT}
+EXPOSE 5055
 
 # Inicia el servidor
 CMD rasa run --enable-api --cors "*" --port ${PORT} --no-prompt --production
