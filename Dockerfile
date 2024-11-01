@@ -32,7 +32,7 @@ ENV PORT=5005
 EXPOSE 5005
 
 # Comando CMD modificado para especificar directamente el puerto y usar el modelo previamente entrenado
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--model", "/app/models", "--host", "0.0.0.0", "--port", "10000"]
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--model", "/app/models", "--port", "10000"]
 
 
 
