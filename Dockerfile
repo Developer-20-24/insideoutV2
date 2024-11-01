@@ -12,16 +12,16 @@ WORKDIR /app
 # Copia solo los archivos necesarios primero
 COPY requirements.txt ./
 
-# Instala las dependencias con pip (sin build-essential y python3-dev)
+# Instala las dependencias con pip
 RUN pip install --no-cache-dir -r requirements.txt && pip cache purge
+
+# Copia la carpeta models (con el modelo previamente entrenado)
+COPY models /app/models
 
 # Copia el resto de los archivos del proyecto
 COPY . .
 
-# Entrena el modelo con configuraciones optimizadas
-RUN rasa train --augmentation 0 --debug
-
-# Limpia archivos innecesarios después del entrenamiento
+# Limpia archivos innecesarios después de la instalación
 RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
     rm -rf /root/.cache
 
@@ -31,6 +31,7 @@ ENV PORT=5005
 # Expone el puerto
 EXPOSE 5005
 
-# Comando CMD modificado para especificar directamente el puerto
-CMD ["sh", "-c", "rasa run --enable-api --cors '*' -p ${PORT}"]
+# Comando CMD modificado para especificar directamente el puerto y usar el modelo previamente entrenado
+CMD ["sh", "-c", "rasa run --enable-api --cors '*' --model models --port 5005"]
+
 
