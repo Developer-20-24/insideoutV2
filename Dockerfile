@@ -29,7 +29,13 @@ RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
 ENV PORT=5005
 
 # Expone el puerto
-EXPOSE ${PORT}
+EXPOSE 5005
 
-# Comando para iniciar el servidor con configuraciones optimizadas
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "${PORT}", "--no-prompt", "--production", "--log-level", "WARNING"]
+# Comando CMD modificado para especificar directamente el puerto
+CMD rasa run \
+    --enable-api \
+    --cors "*" \
+    --port 5005 \
+    --no-prompt \
+    --production \
+    --log-level WARNING
