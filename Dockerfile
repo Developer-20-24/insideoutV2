@@ -38,7 +38,7 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
 EXPOSE 5005
 
 # Comando optimizado para Render
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--host=0.0.0.0", "--port", "5005", "--endpoints", "endpoints.yml", "--credentials", "credentials.yml", "--log-file", "rasa.log", "--debug"]
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "5005", "--endpoints", "endpoints.yml", "--credentials", "credentials.yml", "--log-file", "rasa.log", "--debug"]
 
 #CMD rasa run --enable-api --cors "*" --port "5005" --endpoints "endpoints.yml" --credentials "credentials.yml" --log-file "rasa.log" --debug
 
