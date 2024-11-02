@@ -1,4 +1,5 @@
 FROM python:3.9-slim
+FROM rasa/rasa:3.6.2
 
 # Configura variables de entorno para reducir el uso de memoria
 ENV PYTHONUNBUFFERED=1
@@ -8,6 +9,7 @@ ENV TENSORFLOW_IO_ENABLE_OUTLIER_DETECTION=false
 ENV PORT=5005
 
 # Configura el directorio de trabajo
+COPY . /app
 WORKDIR /app
 
 # Copia solo los archivos necesarios primero

@@ -79,6 +79,10 @@ policies:
 #     epochs: 100
 #     constrain_similarities: true
 http_server:
+  enabled: true
+  port: 5005
+  cors_origins: "*"
+  webhook_url: "/webhooks/rest/webhook"  
   error_handling:
     default_handling: true
   response_headers:

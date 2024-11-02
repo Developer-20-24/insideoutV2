@@ -1,10 +1,12 @@
 FROM python:3.9-slim
+FROM rasa/rasa:3.6.2
 
 # Configura variables de entorno para reducir el uso de memoria
 ENV PYTHONUNBUFFERED=1
 ENV PORT=5055
 
 # Configura el directorio de trabajo
+COPY . /app
 WORKDIR /app
 
 # Instala solo las dependencias esenciales
