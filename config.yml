@@ -83,3 +83,4 @@ http_server:
     default_handling: true
   response_headers:
     Access-Control-Allow-Origin: "*"
+    Access-Control-Allow-Methods: "HEAD,GET,POST,OPTIONS,DELETE,PUT"
