@@ -78,3 +78,8 @@ policies:
 #     max_history: 5
 #     epochs: 100
 #     constrain_similarities: true
+http_server:
+  error_handling:
+    default_handling: true
+  response_headers:
+    Access-Control-Allow-Origin: "*"
