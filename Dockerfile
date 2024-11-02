@@ -38,10 +38,8 @@ RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
 EXPOSE 10000
 
 # Comando optimizado para Render
-CMD rasa run --enable-api --cors "*" --port 10000 --endpoints endpoints.yml --credentials credentials.yml --log-file rasa.log --debug
-
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "10000", "--endpoints", "endpoints.yml", "--credentials", "credentials.yml", "--log-file", "rasa.log", "--debug", "--model", "/app/models"]
 
 #CMD ["sh", "-c", "rasa", "run", "--enable-api", "--cors", "*", "--model", "/app/models", "--port", "5005"]
 
 #CMD ["sh", "-c", "rasa run --enable-api --cors '*' --host 0.0.0.0 --port $PORT -vv & rasa run actions --port 5055 -vv"]
-
