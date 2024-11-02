@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt \
 # Copiar solo los archivos necesarios
 COPY config.yml domain.yml credentials.yml endpoints.yml ./
 COPY data/ ./data/
-COPY models/ ./models/  # Si ya tienes un modelo pre-entrenado
+COPY models/ ./models/ 
 
 # Copia el resto de los archivos del proyecto
 COPY . .
