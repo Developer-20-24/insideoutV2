@@ -2,9 +2,7 @@ FROM python:3.9-slim
 
 # Configura variables de entorno para reducir el uso de memoria
 ENV PYTHONUNBUFFERED=1
-ENV RASA_TELEMETRY_ENABLED=false
-ENV TF_CPP_MIN_LOG_LEVEL=2
-ENV TENSORFLOW_IO_ENABLE_OUTLIER_DETECTION=false
+ENV PORT=5055
 
 # Configura el directorio de trabajo
 WORKDIR /app
@@ -32,7 +30,10 @@ RUN rasa train --debug
 RUN apt-get purge -y --auto-remove build-essential python3-dev \
     && rm -rf /var/lib/apt/lists/* \
     && find . -type d -name "__pycache__" -exec rm -r {} + \
-    && rm -rf /root/.cache
+    && rm -rf /root/.cache /tmp/* /var/tmp/*
+
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:$PORT/health || exit 1
 
 # Configura el puerto
 ENV PORT=5055
@@ -41,5 +42,4 @@ ENV PORT=5055
 EXPOSE 5055
 
 # Inicia el servidor
-CMD ["rasa", "run", "--endpoints", "endpoints.yml", "--credentials", "credentials.yml", "--log-file", "rasa.log", "--debug", "--port", "5055"]
-
+CMD ["rasa", "run", "actions", "--cors", "*", "--port", "5055"]

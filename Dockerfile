@@ -30,15 +30,15 @@ COPY . .
 RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
     rm -rf /root/.cache
 
-# # Healthcheck para Render
-# HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-#     CMD curl -f http://localhost:$PORT/health || exit 1
+# Healthcheck para Render
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:$PORT/health || exit 1
 
 # Expone el puerto
 EXPOSE 10000
 
 # Comando optimizado para Render
-CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "10000", "--endpoints", "endpoints.yml", "--credentials", "credentials.yml", "--log-file", "rasa.log", "--debug", "--model", "/app/models"]
+CMD ["rasa", "run", "--enable-api", "--cors", "*", "--port", "10000", "--endpoints", "endpoints.yml", "--credentials", "credentials.yml", "--log-file", "rasa.log", "--debug"]
 
 #CMD ["sh", "-c", "rasa", "run", "--enable-api", "--cors", "*", "--model", "/app/models", "--port", "5005"]
 
