@@ -38,7 +38,7 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
 EXPOSE 10000
 
 # Comando optimizado para Render
-CMD rasa run --enable-api --cors "*" --port 10000 --no-prompt --production
+CMD rasa run --enable-api --cors "*" --port 10000 
 
 #CMD ["sh", "-c", "rasa", "run", "--enable-api", "--cors", "*", "--model", "/app/models", "--port", "5005"]
 
