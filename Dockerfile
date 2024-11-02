@@ -5,6 +5,7 @@ ENV PYTHONUNBUFFERED=1
 ENV RASA_TELEMETRY_ENABLED=false
 ENV TF_CPP_MIN_LOG_LEVEL=2
 ENV TENSORFLOW_IO_ENABLE_OUTLIER_DETECTION=false
+ENV PORT=10000
 
 # Configura el directorio de trabajo
 WORKDIR /app
@@ -13,10 +14,14 @@ WORKDIR /app
 COPY requirements.txt ./
 
 # Instala las dependencias con pip
-RUN pip install --no-cache-dir -r requirements.txt && pip cache purge
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip cache purge \
+    && rm -rf /root/.cache /tmp/* /var/tmp/*
 
-# Copia la carpeta models (con el modelo previamente entrenado)
-COPY models /app/models
+# Copiar solo los archivos necesarios
+COPY config.yml domain.yml credentials.yml endpoints.yml ./
+COPY data/ ./data/
+COPY models/ ./models/  # Si ya tienes un modelo pre-entrenado
 
 # Copia el resto de los archivos del proyecto
 COPY . .
@@ -25,14 +30,15 @@ COPY . .
 RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
     rm -rf /root/.cache
 
-# Configura el puerto
-ENV PORT=5005
+# Healthcheck para Render
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:$PORT/health || exit 1
 
 # Expone el puerto
-EXPOSE 5005
+EXPOSE $PORT
 
-# Comando CMD modificado para especificar directamente el puerto y usar el modelo previamente entrenado
-CMD ["sh", "-c", "rasa run --enable-api --cors '*' --host 0.0.0.0 --port 5005"]
+# Comando optimizado para Render
+CMD rasa run --enable-api --cors "*" --host 0.0.0.0 --port $PORT --no-prompt --production
 
 #CMD ["sh", "-c", "rasa", "run", "--enable-api", "--cors", "*", "--model", "/app/models", "--port", "5005"]
 
