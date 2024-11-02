@@ -38,5 +38,4 @@ EXPOSE 5055
 
 # Inicia el servidor
 EXPOSE 5055
-CMD ["rasa", "run", "actions", "--cors", "*", "--port", "5055"]
-
+CMD rasa run actions --cors "*" --port "5055" --endpoints "endpoints.yml" --credentials "credentials.yml"

@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED=1
 ENV RASA_TELEMETRY_ENABLED=false
 ENV TF_CPP_MIN_LOG_LEVEL=2
 ENV TENSORFLOW_IO_ENABLE_OUTLIER_DETECTION=false
-ENV PORT=10000
+ENV PORT=5005
 
 # Configura el directorio de trabajo
 WORKDIR /app
@@ -35,10 +35,10 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:$PORT/health || exit 1
 
 # Expone el puerto
-EXPOSE 10000
+EXPOSE 5005
 
 # Comando optimizado para Render
-CMD rasa run --enable-api --cors "*" --host "0.0.0.0" --port "10000" --endpoints "endpoints.yml" --credentials "credentials.yml" --log-file "rasa.log" --debug
+CMD rasa run --enable-api --cors "*" --port "5005" --endpoints "endpoints.yml" --credentials "credentials.yml" --log-file "rasa.log" --debug
 
 #CMD ["sh", "-c", "rasa", "run", "--enable-api", "--cors", "*", "--model", "/app/models", "--port", "5005"]
 
