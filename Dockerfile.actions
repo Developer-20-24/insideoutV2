@@ -41,4 +41,5 @@ ENV PORT=5055
 EXPOSE 5055
 
 # Inicia el servidor
-CMD ["rasa", "run", "actions", "--port", "5055"]
+CMD ["rasa", "run", "--endpoints", "endpoints.yml", "--credentials", "credentials.yml", "--log-file", "rasa.log", "--debug", "--port", "5055"]
+
