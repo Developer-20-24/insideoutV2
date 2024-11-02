@@ -37,4 +37,6 @@ HEALTHCHECK --interval=60s --timeout=60s --start-period=60s --retries=5 \
 EXPOSE 5055
 
 # Inicia el servidor
-CMD ["rasa", "run", "actions", "--port", "5055", "--debug"]
+EXPOSE 5055
+CMD ["rasa", "run", "actions", "--cors", "*", "--port", "5055"]
+
