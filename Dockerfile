@@ -8,8 +8,8 @@ ENV TF_CPP_MIN_LOG_LEVEL=2
 ENV TENSORFLOW_IO_ENABLE_OUTLIER_DETECTION=false
 ENV PORT=5005
 
-# Cambiar al usuario root para las instalaciones
-USER root
+# # Cambiar al usuario root para las instalaciones
+# USER root
 
 # Configura el directorio de trabajo
 WORKDIR /app
@@ -30,16 +30,16 @@ COPY models/ ./models/
 # Copia el resto de los archivos del proyecto
 COPY . .
 
-# Cambiar al usuario no privilegiado
-USER 1001
+# # Cambiar al usuario no privilegiado
+# USER 1001
 
-# Limpia archivos innecesarios después de la instalación
-RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
-    rm -rf /root/.cache
+# # Limpia archivos innecesarios después de la instalación
+# RUN find . -type d -name "__pycache__" -exec rm -r {} + && \
+#     rm -rf /root/.cache
 
-# Healthcheck para Render
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:$PORT/health || exit 1
+# # Healthcheck para Render
+# HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+#     CMD curl -f http://localhost:$PORT/health || exit 1
 
 # Expone el puerto
 EXPOSE 5005
