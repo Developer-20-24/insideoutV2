@@ -1,12 +1,14 @@
 FROM python:3.9-slim
 FROM rasa/rasa:3.6.2
 
+# Cambiar al usuario root para instalar dependencias
+USER root
+
 # Configura variables de entorno para reducir el uso de memoria
 ENV PYTHONUNBUFFERED=1
 ENV PORT=5055
 
 # Configura el directorio de trabajo
-COPY . /app
 WORKDIR /app
 
 # Instala solo las dependencias esenciales
@@ -16,20 +18,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copia los archivos necesarios
-COPY requirements.txt ./
+COPY requirements.txt /app/
+COPY actions ./actions
+
 
 # Instala las dependencias
-RUN pip install --no-cache-dir -r requirements.txt \
-    && pip cache purge
+RUN pip install --no-cache-dir -r requirements.txt 
 
 # Copia el resto de los archivos
 COPY . .
 
+# Cambiar de vuelta al usuario no privilegiado
+USER 1001
+
 # Limpia archivos innecesarios
-RUN apt-get purge -y --auto-remove build-essential python3-dev \
-    && rm -rf /var/lib/apt/lists/* \
-    && find . -type d -name "__pycache__" -exec rm -r {} + \
-    && rm -rf /root/.cache /tmp/* /var/tmp/*
+# RUN apt-get purge -y --auto-remove build-essential python3-dev \
+#     && rm -rf /var/lib/apt/lists/* \
+#     && find . -type d -name "__pycache__" -exec rm -r {} + \
+#     && rm -rf /root/.cache /tmp/* /var/tmp/*
 
 HEALTHCHECK --interval=60s --timeout=60s --start-period=60s --retries=5 \
     CMD curl -f http://localhost:$PORT/health || exit 1
