@@ -17,10 +17,10 @@ WORKDIR /app
 # Copia solo los archivos necesarios primero
 COPY requirements.txt ./
 
-# Instala las dependencias con pip
-RUN pip install --no-cache-dir -r requirements.txt \
-    && pip cache purge \
-    && rm -rf /root/.cache /tmp/* /var/tmp/*
+# # Instala las dependencias con pip
+#RUN pip install --no-cache-dir -r requirements.txt \
+#     && pip cache purge \
+#     && rm -rf /root/.cache /tmp/* /var/tmp/*
 
 # Copiar solo los archivos necesarios
 COPY config.yml domain.yml credentials.yml endpoints.yml ./
