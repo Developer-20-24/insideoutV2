@@ -5,10 +5,7 @@ intents:
   - adaptacion_cliente
   - proceso_trabajo
   - resultados_esperados
-  - medicion_exito
-  - saludo
-  - despedida
-  - nlu_fallback
+    - nlu_fallback
   - numeric_input
 
 responses:
@@ -32,12 +29,6 @@ responses:
 
   utter_default:
   - text: "No he entendido tu mensaje. Por favor, pregúntame sobre nuestros servicios o selecciona una de las opciones disponibles."
-
-  utter_saludo:
-  - text: "Hola soy Anita, ¿en qué puedo ayudarte?"
-
-  utter_despedida:
-  - text: "Fue un gusto ayudarte, ¡Hasta la próxima!"
 
 actions:
   - action_default_fallback
