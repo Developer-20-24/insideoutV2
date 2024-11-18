@@ -18,11 +18,12 @@ WORKDIR /app
 
 # Copia los archivos necesarios
 COPY requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY actions ./actions
 
 
-# Instala las dependencias
-#RUN pip install --no-cache-dir -r requirements.txt 
 
 # Copia el resto de los archivos
 COPY . .
