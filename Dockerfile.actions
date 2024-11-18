@@ -1,12 +1,11 @@
 FROM python:3.9-slim
-FROM rasa/rasa:3.6.2
 
 # # Cambiar al usuario root para instalar dependencias
 # USER root
 
 # Configura variables de entorno para reducir el uso de memoria
-ENV PYTHONUNBUFFERED=1
-ENV PORT=5055
+# ENV PYTHONUNBUFFERED=1
+# ENV PORT=5055
 
 # Configura el directorio de trabajo
 WORKDIR /app
@@ -18,8 +17,8 @@ WORKDIR /app
 #     && rm -rf /var/lib/apt/lists/*
 
 # Copia los archivos necesarios
-COPY requirements.txt /app/
-COPY actions ./actions
+RUN pip install -r requirements.txt
+RUN actions ./actions
 
 
 # Instala las dependencias
@@ -41,8 +40,6 @@ COPY . .
 #     CMD curl -f http://localhost:$PORT/health || exit 1
 
 
-# Expone el puerto
-EXPOSE 5055
 
 # Inicia el servidor
 EXPOSE 5055
