@@ -17,8 +17,8 @@ WORKDIR /app
 #     && rm -rf /var/lib/apt/lists/*
 
 # Copia los archivos necesarios
-RUN pip install -r requirements.txt
-RUN actions ./actions
+COPY requirements.txt ./
+COPY actions ./actions
 
 
 # Instala las dependencias

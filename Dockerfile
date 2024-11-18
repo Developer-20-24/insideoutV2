@@ -3,8 +3,7 @@ FROM python:3.9.12-slim
 WORKDIR /app
 COPY . .
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+COPY requirements.txt ./
 
 EXPOSE 5005
 
